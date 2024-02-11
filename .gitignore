@@ -12,6 +12,7 @@ vendor/
 .gradle
 .idea
 out/
+cache/
 # Dependency directories
 node_modules/
 # Ignore Gradle build output directory

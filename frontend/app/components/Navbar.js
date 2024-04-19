@@ -20,12 +20,8 @@ const Navbar = () => {
                 </div>
                 <div className="hidden md:block">
                     <div className='ml-4 flex items-center space-x-4'>
-                        <a href='/' className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                        <a href='/' className="text-white hover:bg-white hover:text-black rounded-lg p-2 hidden">
                             Upgrade to #number# 
-                            
-                        </a>
-                        <a href='/' className="text-white hover:bg-white hover:text-black rounded-lg p-2">
-                            English ↓
                             
                         </a>
                         <a href='/' className="text-white hover:bg-white hover:text-black rounded-lg p-2">
@@ -34,6 +30,9 @@ const Navbar = () => {
                         </a>
                         <a href='/' className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                             Actions ↓
+                        </a>
+                        <a href='/' className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                            Tracker
                         </a>
                         <a href='/' className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                             Login

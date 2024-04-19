@@ -1,0 +1,46 @@
+{
+  "name": "degendb",
+  "version": "0.0.1",
+  "description": "A Decentralized File Synchronization Platform",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bittorrent-tracker": "^11.0.2",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "helmet": "^6.0.1",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "randomstring": "^1.1.5",
+    "rate-limiter-flexible": "^2.2.1",
+    "swagger-jsdoc": "^6.0.8",
+    "swagger-ui-express": "^4.1.6",
+    "webtorrent": "^2.2.1"
+  },
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DegenCoders/Decentralized-Data-Bank.git"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "web3js",
+    "torrents",
+    "trackers",
+    "swaggerui"
+  ],
+  "bugs": {
+    "url": "https://github.com/DegenCoders/Decentralized-Data-Bank/issues"
+  },
+  "homepage": "https://github.com/DegenCoders/Decentralized-Data-Bank",
+  "type": "module"
+}

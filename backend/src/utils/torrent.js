@@ -5,28 +5,29 @@ import { getTrackerAddress } from "./tracker.js";
 let announcer = getTrackerAddress()
 const client = new WebTorrent({tracker:announcer});
 
-console.log("announcer "+announcer)
-export function createTorrentfromFile(filePath, filename, requester) {
-    console.log("announcer "+announcer)
-    const opts = {
-        name: filename,
-        createdBy: requester,
+export function createTorrentfromFile(filePath, filename) {
+    const torrentOpts = {
         private: true,
         announceList: [[announcer]]
     }
-    console.log(opts)
-    createTorrent(filePath, opts, (err, torrent) => {
+    const clientOpts = {
+        private: true,
+        announceList: [[announcer]],
+        path: "target/"
+    }
+    createTorrent(filePath, torrentOpts, (err, torrent) => {
         if (!err) {
             fs.writeFile(filename + ".torrent", torrent, (err) => {
                 if (err)
                     console.log(err);
                 else {
                     console.log("File written successfully");
+                    client.add(filename+".torrent", clientOpts, (torrent) => {
+                        console.log('Seeding torrent:', torrent.name);
+                    });
+                    console.log("seeding")
                 }
             })
-            client.seed(torrent, opts, (torrent) => {
-                console.log('Seeding torrent:', torrent.name);
-            });
         }
         else {
             console.log(err)

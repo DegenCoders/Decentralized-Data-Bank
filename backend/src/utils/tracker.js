@@ -3,13 +3,15 @@ import { Server } from 'bittorrent-tracker'
 let trackerServer = startTracker(); // Store server instance for reference
 export function startTracker(trackerHost) {
   const server = new Server({
-    udp: false,
+    udp: true,
     http: true,
-    ws: false,
+    ws: true,
     stats: true,
-    trustProxy: false,
+    trustProxy: true,
   })
   server.http
+  server.udp
+  server.ws
 
   server.on('error', function (err) {
     console.log(err.message)
@@ -25,6 +27,16 @@ export function startTracker(trackerHost) {
     const httpPort = httpAddr.port
     console.log(`HTTP tracker: http://${httpHost}:${httpPort}/announce`)
     console.log(`Stats tracker: http://${httpHost}:${httpPort}/stats`)
+
+    const udpAddr = server.udp.address()
+    const udpHost = udpAddr.address
+    const udpPort = udpAddr.port
+    console.log(`UDP tracker: udp://${udpHost}:${udpPort}`)
+  
+    const wsAddr = server.ws.address()
+    const wsHost = wsAddr.address !== '::' ? wsAddr.address : 'localhost'
+    const wsPort = wsAddr.port
+    console.log(`WebSocket tracker: ws://${wsHost}:${wsPort}`)
 
     trackerServer = server; // Store server instance for later reference
     console.log("STORED TO GLOBAL")
@@ -44,10 +56,16 @@ export function getTrackerAddress() {
   if (!trackerServer) {
     throw new Error('Tracker server not started'); // Or provide a default address
   }
+
   const httpAddr = trackerServer.http.address()
   const httpHost = httpAddr.address !== '::' ? httpAddr.address : 'localhost'
   const httpPort = httpAddr.port
-  return `http://${httpHost}:${httpPort}/announce`
+
+  const wsAddr = trackerServer.ws.address()
+  const wsHost = wsAddr.address !== '::' ? wsAddr.address : 'localhost'
+  const wsPort = wsAddr.port
+
+  return [`http://${httpHost}:${httpPort}/announce`, `ws://${wsHost}:${wsPort}`]
 }
 
 export function stopTracker() {

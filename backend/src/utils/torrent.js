@@ -1,9 +1,8 @@
 import WebTorrent from 'webtorrent';
 import { getTrackerAddress } from "./tracker.js";
-let announcer = getTrackerAddress()
 const client = new WebTorrent();
 const clientOpts = {
-    announce: [announcer],
+    announce: getTrackerAddress(),
     path: "./downloaded_files"
 }
 
@@ -19,11 +18,11 @@ export function createTorrentfromFile(filePath) {
 }
 
 export function downloadFromTorrent(magnetUri) {
-    client.add(magnetUri, clientOpts, (torrent) => {
+    client.add(magnetUri, function (torrent) {
         console.log("Downloading:", torrent.name);
 
         // Listen for download progress
-        torrent.on('download', (bytes) => {
+        torrent.on('download', function (bytes)  {
             console.log('Just downloaded:', bytes);
             console.log('Total downloaded:', torrent.downloaded);
             console.log('Download speed:', torrent.downloadSpeed);

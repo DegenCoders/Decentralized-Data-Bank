@@ -29,7 +29,7 @@ export function startTracker(trackerHost) {
     trackerServer = server; // Store server instance for later reference
     console.log("STORED TO GLOBAL")
   })
-  const port = 0
+  const port = 40267
   const hostname = trackerHost
   server.listen(port, hostname, () => {
   })

@@ -17,8 +17,8 @@ torrentRouter.get("/torrent/create", function (req, res, next) {
 })
 
 torrentRouter.get("/torrent/download", function (req, res, next) {
-    console.log(req.body.magnetUri)
     downloadFromTorrent(req.body.magnetUri);
+    res.send("OK")
 })
 
 torrentRouter.get("/torrent/delete", function (req, res, next) {

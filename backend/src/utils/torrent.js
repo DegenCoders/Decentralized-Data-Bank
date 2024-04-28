@@ -1,5 +1,3 @@
-import createTorrent from "create-torrent";
-import fs from 'fs'
 import WebTorrent from 'webtorrent';
 import { getTrackerAddress } from "./tracker.js";
 let announcer = getTrackerAddress()
@@ -21,7 +19,6 @@ export function createTorrentfromFile(filePath) {
 }
 
 export function downloadFromTorrent(magnetUri) {
-    
     client.add(magnetUri, clientOpts, (torrent) => {
         console.log("Downloading:", torrent.name);
 

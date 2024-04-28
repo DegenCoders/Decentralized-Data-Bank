@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTorrentfromFile, getTrackerAddress } from "../utils/index.js";
+import { createTorrentfromFile, getTrackerAddress, downloadFromTorrent } from "../utils/index.js";
 
 const torrentRouter = Router()
 
@@ -12,8 +12,13 @@ torrentRouter.get("/torrent/:id}", function (req, res, next) {
 })
 
 torrentRouter.get("/torrent/create", function (req, res, next) {
-    createTorrentfromFile("target/calamares.gz")
+    createTorrentfromFile("target/abv.pdf")
     res.send("OK")
+})
+
+torrentRouter.get("/torrent/download", function (req, res, next) {
+    console.log(req.body.magnetUri)
+    downloadFromTorrent(req.body.magnetUri);
 })
 
 torrentRouter.get("/torrent/delete", function (req, res, next) {

@@ -12,8 +12,7 @@ torrentRouter.get("/torrent/:id}", function (req, res, next) {
 })
 
 torrentRouter.get("/torrent/create", function (req, res, next) {
-    console.log(req.body)
-    createTorrentfromFile("C:/Users/gamev/Downloads/thewitcher.com_en_3840x2160_60ca014bbcc24.png", "lol.png", "Tejas", getTrackerAddress())
+    createTorrentfromFile("target/calamares.gz")
     res.send("OK")
 })
 

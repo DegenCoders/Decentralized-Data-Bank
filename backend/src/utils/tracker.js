@@ -24,6 +24,7 @@ export function startTracker(trackerHost) {
     const httpHost = httpAddr.address !== '::' ? httpAddr.address : 'localhost'
     const httpPort = httpAddr.port
     console.log(`HTTP tracker: http://${httpHost}:${httpPort}/announce`)
+    console.log(`Stats tracker: http://${httpHost}:${httpPort}/stats`)
 
     trackerServer = server; // Store server instance for later reference
     console.log("STORED TO GLOBAL")
